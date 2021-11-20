@@ -3,7 +3,7 @@ mapboxgl.accessToken =
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/canagig/ckv4ib5425pot14o6shn1e64g",
-  center: [-96.1581974, 36.1519752],
+  center: [-101.871088,36.717658],
   zoom: 3,
 });
 
@@ -54,14 +54,7 @@ function renderListings(features) {
         "</p>" +
         "<p class='name'>State: " +
         prop.state +
-        "</p>" +
-        '<button class="listings-button">' +
-        '<a target="_blank" href="' +
-        prop.link +
-        '">' +
-        "Apply Now" +
-        "</a>" +
-        "</button>";
+        "</p>";
       // item.addEventListener("mouseover", function () {
       // //   // Highlight corresponding feature on the map
       //   popup
@@ -78,7 +71,7 @@ function renderListings(features) {
       //         "</p><p class='first-popup'>Job Type: " +
       //         feature.properties.jobType +
       //         "</p>" +
-      //         "<button class='first-popup'>See job details</button>"
+      //         "<button class='first-popup'>See more</button>"
       //     )
       //     .addTo(map);
       // //   // Fly the map to the location.
@@ -99,7 +92,7 @@ function renderListings(features) {
             "</p><p class='first-popup'>Job Type: " +
             feature.properties.jobType +
             "</p>" +
-            "<button class='first-popup'>See job details</button>"
+            "<button class='first-popup'>See more</button>"
           )
           .addTo(map);
         map.flyTo({
@@ -241,63 +234,24 @@ map.on("load", async () => {
   map.addSource("jobListing", {
     type: "geojson",
     data: geojson,
-    cluster: true,
-    clusterMaxZoom: 10, // Max zoom to cluster points on
-    clusterRadius: 10 // Radius of each cluster when clustering points (defaults to 50)
   });
-  
-
-  // Add a layer for the clusters' count labels
-  map.addLayer({
-    "id": "cluster",
-    // "minzoom": 10,
-    // "maxzoom": 10,
-    "type": "circle",
-    "source": "jobListing",
-    "filter": ['has', 'point_count'],
-    "paint": {
-      "circle-color": "#007922",
-      "circle-radius": 20
-    },
-    // "filter": ["get", "point_count", "cluster"]
-  });
-
-
-  map.addLayer({
-    "id": "cluster-count",
-    "type": "symbol",
-    // "minzoom": 10,
-    // "maxzoom": 10,
-    "source": "jobListing",
-    "filter": ['has', 'point_count'],
-    "layout": {
-      "text-field": "{point_count}",
-      "text-font": [
-        "DIN Offc Pro Medium",
-        "Arial Unicode MS Bold"
-      ],
-      "text-size": 18,
-    },
-    paint: {
-      "text-color": "#ffffff"
-    }
-  });
-
-  // Add the symbol layer to the map - for unclustered points
+  // Add the rocket symbol layer to the map.
   map.addLayer({
     id: "jobListing",
-    // "minzoom": 1,
-    // "maxzoom": 9,
     type: "symbol",
     source: "jobListing",
-    filter: ['!', ['has', 'point_count']],    
     layout: {
-      "icon-image": ["get", "icon"]
+      // This icon is a part of the Mapbox Streets style.
+      // To view all images available in a Mapbox style, open
+      // the style in Mapbox Studio and click the "Images" tab.
+      // To add a new image to the style at runtime see
+      // https://docs.mapbox.com/mapbox-gl-js/example/add-image/
+      // "icon-image": ["get", getIcon("jobListing".properties.featuredJob)],
+      "icon-image": ["get", "icon"],
+      // "icon-image": "music-15",
     },
   });
-
   
-
   // add bounding box and fit to bounds
   var bounds = new mapboxgl.LngLatBounds();
   geojson.features.forEach(function (feature) {
@@ -325,8 +279,6 @@ map.on("load", async () => {
 
   // When a click event occurs on a feature in the places layer, open a popup at the
   // location of the feature, with description HTML from its properties.
-
-
   map.on("click", "jobListing", (e) => {
     console.log(e)
     // Copy coordinates array.
@@ -336,9 +288,9 @@ map.on("load", async () => {
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
     // over the copy being pointed to.
-    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    //   coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    // }
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
 
     new mapboxgl.Popup()
       .setLngLat(coordinates)
@@ -354,7 +306,7 @@ map.on("load", async () => {
         "</p><p class='first-popup'>Job Type: " +
         feature.properties.jobType +
         "</p>" +
-        "<button class='first-popup'>See job details</button>"
+        "<button class='first-popup'>See more</button>"
       )
       .addTo(map);
 
@@ -393,6 +345,14 @@ map.on("load", async () => {
       );
 
       $("button.sidebar-button").click(function () {
+        console.log('apply button clicked');
+        mixpanel.track('Apply Button Clicked',{
+        'link':feature.properties.link,
+        'Name':feature.properties.name,
+        'Company':feature.properties.company,
+        'jobCity':feature.properties.city,
+         'jobState':feature.properties.state
+        });
         window.open(
           feature.properties.link,
           "_blank" // <- This is what makes it open in a new window.
@@ -420,35 +380,7 @@ map.on("load", async () => {
     });
     // end custom second popup -
   });
-
-  // inspect a cluster on click
-  map.on('click', 'cluster', (e) => {
-    const features = map.queryRenderedFeatures(e.point, {
-      layers: ['cluster']
-    });
-    const clusterId = features[0].properties.cluster_id;
-    map.getSource('jobListing').getClusterExpansionZoom(
-      clusterId,
-      (err, zoom) => {
-        if (err) return;
-
-        map.easeTo({
-          center: features[0].geometry.coordinates,
-          zoom: zoom
-        });
-      }
-    );
-
-    
-  });
-
-  map.on('mouseenter', 'cluster', () => {
-    map.getCanvas().style.cursor = 'pointer';
-  });
-  map.on('mouseleave', 'cluster', () => {
-    map.getCanvas().style.cursor = '';
-  });
-
+  
   // Change the cursor to a pointer when the mouse is over the places layer.
   map.on("mouseenter", "jobListing", () => {
     map.getCanvas().style.cursor = "pointer";
@@ -459,8 +391,36 @@ map.on("load", async () => {
     map.getCanvas().style.cursor = "";
   });
 
-  
+  // map.on("mousemove", "jobListing", function (e) {
+  //   // Change the cursor style as a UI indicator.
+  //   map.getCanvas().style.cursor = "pointer";
 
+  //   // Populate the popup and set its coordinates based on the feature.
+  //   var feature = e.features[0];
+  //   popup
+  //     .setLngLat(feature.geometry.coordinates)
+  //     .setHTML(
+  //       "<img src='" +
+  //         feature.properties.logo +
+  //         "'>" +
+  //         "<b>Title: " +
+  //         feature.properties.name +
+  //         "</b></br>" +
+  //         "<p>Company: " +
+  //         feature.properties.company +
+  //         "</p><p>Job Type: " +
+  //         feature.properties.jobType +
+  //         "</p>" +
+  //         "<button style='background-color:#007922'>See full details</button>"
+  //     )
+  //     .addTo(map);
+  // });
+
+  // map.on("mouseleave", "jobListing", function () {
+  //   map.getCanvas().style.cursor = "";
+  //   popup.remove();
+  // });  
+  
   filterEl.addEventListener("keyup", function (e) {
     var value = normalize(e.target.value);
 
@@ -574,4 +534,13 @@ map.on("load", async () => {
       throw new Error(err);
     }
   }
+  
+  function hideLoader() {
+    $('#loading').hide();
+}
+
+$(window).ready(hideLoader);
+
+// Strongly recommended: Hide loader after 20 seconds, even if the page hasn't finished loading
+setTimeout(hideLoader, 20 * 1000);
 });
