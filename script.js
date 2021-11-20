@@ -13,7 +13,7 @@ map.addControl(nav, 'top-right');
 map.addControl(
   new mapboxgl.GeolocateControl({
   positionOptions: {
-  enableHighAccuracy: true
+  enableHighAccuracy: false
   },
   // When active the map will receive updates to the device's location as it changes.
   trackUserLocation: true,
