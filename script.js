@@ -13,7 +13,7 @@ map.addControl(nav, 'top-right');
 map.addControl(
   new mapboxgl.GeolocateControl({
   positionOptions: {
-  enableHighAccuracy: false
+  enableHighAccuracy: true
   },
   // When active the map will receive updates to the device's location as it changes.
   trackUserLocation: true,
@@ -174,10 +174,11 @@ function renderListings(features) {
     listingEl.appendChild(empty);
   } else {
     // I add this part of code for not needing a map dragging to populate the results on the sidebar:
-    map.fitBounds([
-      [-78.766357, 42.793953],
-      [-88.0686147, 37.9002342],
-    ]);
+    // map.fitBounds([
+    //   [-78.766357, 42.793953],
+    //   [-88.0686147, 37.9002342],
+    // ]);
+    /////////////
 
     // empty.textContent = 'Drag the map to populate results';
     // listingEl.appendChild(empty);
@@ -426,9 +427,6 @@ map.on("load", async () => {
     // Filter visible features that don't match the input value.
     var filtered = places.filter(function (feature) {
       var name = normalize(feature.properties.name);
-      var company = normalize(feature.properties.company);
-      var city = normalize(feature.properties.city);
-      var state = normalize(feature.properties.state);
       var code = normalize(feature.properties.link);
       return name.indexOf(value) > -1 || code.indexOf(value) > -1;
     });
@@ -437,17 +435,6 @@ map.on("load", async () => {
     renderListings(filtered);
 
     // Set the filter to populate features into the layer.
-    if (filtered.length) {
-      map.setFilter("jobListing", [
-        "match",
-        ["get", "name"],
-        filtered.map(function (feature) {
-          return feature.properties.name;
-        }),
-        true,
-        false,
-      ]);
-    }
     if (filtered.length) {
       map.setFilter("jobListing", [
         "match",
