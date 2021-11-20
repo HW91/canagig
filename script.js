@@ -427,6 +427,9 @@ map.on("load", async () => {
     // Filter visible features that don't match the input value.
     var filtered = places.filter(function (feature) {
       var name = normalize(feature.properties.name);
+      var company = normalize(feature.properties.company);
+      var city = normalize(feature.properties.city);
+      var state = normalize(feature.properties.state);
       var code = normalize(feature.properties.link);
       return name.indexOf(value) > -1 || code.indexOf(value) > -1;
     });
@@ -435,6 +438,17 @@ map.on("load", async () => {
     renderListings(filtered);
 
     // Set the filter to populate features into the layer.
+    if (filtered.length) {
+      map.setFilter("jobListing", [
+        "match",
+        ["get", "name"],
+        filtered.map(function (feature) {
+          return feature.properties.name;
+        }),
+        true,
+        false,
+      ]);
+    }
     if (filtered.length) {
       map.setFilter("jobListing", [
         "match",
