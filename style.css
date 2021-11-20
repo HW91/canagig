@@ -18,7 +18,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  font: 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font: 15px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
   background-color: #fff;
   /* overflow: hidden;
   overflow-y: scroll !important; */
@@ -126,20 +126,17 @@ button.sidebar-button {
   padding: 0;
   margin: 0;
 }
-
 p.link {
   color: #052538;
   font: bold 11px "Work Sans Regular", "Source Sans Pro", Helvetica, Arial;
   padding: 0;
   margin: 5px 0 0 0;
 }
-
 p.link:hover {
   color: #ede8d6;
   text-decoration: underline;
   text-transform: uppercase;
 }
-
 h4.name {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -242,19 +239,15 @@ div.sidebar-content {
   line-height: 40px;
   margin-bottom: 5px;
 }
-
 .sidebar-content-inner h2 {
   font-size: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
   font-weight: 600;
 }
-
 div.sidebar-content-inner h3 {
   font-size: 16px;
 }
-
-
 div.sidebar-content-inner p.description {
   font-size: 14px;
 } */
@@ -307,4 +300,14 @@ div.sidebar-content-inner p.description {
     margin-bottom: 2px;
     margin-top: 2px;
   }
+}
+
+#loading {
+    background: #ffffff url('gearscolor.gif') no-repeat center center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
 }
