@@ -449,6 +449,17 @@ map.on("load", async () => {
         false,
       ]);
     }
+        if (filtered.length) {
+      map.setFilter("jobListing", [
+        "match",
+        ["get", "city"],
+        filtered.map(function (feature) {
+          return feature.properties.city;
+        }),
+        true,
+        false,
+      ]);
+    }
   });
 
   // Call this function on initialization
