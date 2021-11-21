@@ -55,28 +55,28 @@ function renderListings(features) {
         "<p class='name'>State: " +
         prop.state +
         "</p>";
-      // item.addEventListener("mouseover", function () {
-      // //   // Highlight corresponding feature on the map
-      //   popup
-      //     .setLngLat(feature.geometry.coordinates)
-      //     .setHTML(
-      //       "<img class='first-popup' src='" +
-      //         feature.properties.logo +
-      //         "'></br>" +
-      //         "<b class='first-popup'>Title: " +
-      //         feature.properties.name +
-      //         "</b>" +
-      //         "<p class='first-popup'>Company: " +
-      //         feature.properties.company +
-      //         "</p><p class='first-popup'>Job Type: " +
-      //         feature.properties.jobType +
-      //         "</p>" +
-      //         "<button class='first-popup'>See more</button>"
-      //     )
-      //     .addTo(map);
-      // //   // Fly the map to the location.
+      item.addEventListener("mouseover", function () {
+      //   // Highlight corresponding feature on the map
+        popup
+          .setLngLat(feature.geometry.coordinates)
+          .setHTML(
+            "<img class='first-popup' src='" +
+              feature.properties.logo +
+              "'></br>" +
+              "<b class='first-popup'>Title: " +
+              feature.properties.name +
+              "</b>" +
+              "<p class='first-popup'>Company: " +
+              feature.properties.company +
+              "</p><p class='first-popup'>Job Type: " +
+              feature.properties.jobType +
+              "</p>" +
+              "<button class='first-popup'>See more</button>"
+          )
+          .addTo(map);
+      //   // Fly the map to the location.
 
-      // });
+      });
       item.addEventListener("click", function () {
         popup
           .setLngLat(feature.geometry.coordinates)
