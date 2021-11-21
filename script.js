@@ -445,6 +445,7 @@ map.on("load", async () => {
         true,
         false,
       ]);
+    }    
     if (filtered.length) {
       map.setFilter("jobListing", [
         "match",
