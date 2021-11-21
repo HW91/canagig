@@ -2,7 +2,7 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiY2FuYWdpZyIsImEiOiJja3V6dzdtNWYydGExMndvZG12NThqbmpkIn0._qXSCKmbH3kafrivy_7o9w";
 const map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/mapbox/outdoors-v10?optimize=true", // optimize=true
+  style: "mapbox://styles/mapbox/canagig/ckv4ib5425pot14o6shn1e64g?optimize=true",
   center: [-101.871088,36.717658],
   zoom: 3,
 });
