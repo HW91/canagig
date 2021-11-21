@@ -61,17 +61,17 @@ function renderListings(features) {
           .setLngLat(feature.geometry.coordinates)
           .setHTML(
             "<img class='first-popup' src='" +
-              feature.properties.logo +
-              "'></br>" +
-              "<b class='first-popup'>Title: " +
-              feature.properties.name +
-              "</b>" +
-              "<p class='first-popup'>Company: " +
-              feature.properties.company +
-              "</p><p class='first-popup'>Job Type: " +
-              feature.properties.jobType +
-              "</p>" +
-              "<button class='first-popup'>See more</button>"
+            feature.properties.logo +
+            "'></br>" +
+            "<b class='first-popup'>Title: " +
+            feature.properties.name +
+            "</b>" +
+            "<p class='first-popup'>Company: " +
+            feature.properties.company +
+            "</p><p class='first-popup'>Job Type: " +
+            feature.properties.jobType +
+            "</p>" +
+            "<button class='first-popup'>See more</button>"
           )
           .addTo(map);
       //   // Fly the map to the location.
