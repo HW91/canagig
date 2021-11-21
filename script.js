@@ -428,6 +428,9 @@ map.on("load", async () => {
     var filtered = places.filter(function (feature) {
       var name = normalize(feature.properties.name);
       var code = normalize(feature.properties.link);
+      var company = normalize(feature.properties.company);
+      var city = normalize(feature.properties.city);
+      var state = normalize(feature.properties.state);
       return name.indexOf(value) > -1 || code.indexOf(value) > -1;
     });
 
@@ -513,7 +516,6 @@ map.on("load", async () => {
             salary: item[8],
             city: item[10],
             state: item[11],
-            country: item[13],
             jobDescription: item[17],
             link: item[18],
             logo: companyLogo,
