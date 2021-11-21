@@ -97,7 +97,7 @@ function renderListings(features) {
           .addTo(map);
         map.flyTo({
           center: feature.geometry.coordinates,
-          zoom: 10,
+          zoom: 6,
         });
       })
 
