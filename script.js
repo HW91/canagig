@@ -438,6 +438,9 @@ map.on("load", async () => {
       map.setFilter("jobListing", [
         "match",
         ["get", "name"],
+        ["get", "company"],
+        ["get", "city"],
+        ["get", "state"],
         filtered.map(function (feature) {
           return feature.properties.name;
         }),
