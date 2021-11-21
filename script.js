@@ -449,17 +449,6 @@ map.on("load", async () => {
         false,
       ]);
     }
-        if (filtered.length) {
-      map.setFilter("jobListing", [
-        "match",
-        ["get", "company"],
-        filtered.map(function (feature) {
-          return feature.properties.company;
-        }),
-        true,
-        false,
-      ]);
-    }
   });
 
   // Call this function on initialization
