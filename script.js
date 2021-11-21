@@ -220,14 +220,14 @@ map.on("load", async () => {
     if (error) throw error;
 
     // Add the image to the map style.
-    map.addImage("red-marker-icon", image);
+    map.addImage("redpin", image);
   });
 
   map.loadImage("greenpin.png", (error, image) => {
     if (error) throw error;
 
     // Add the image to the map style.
-    map.addImage("green-marker-icon", image);
+    map.addImage("greenpin", image);
   });
 
   // Add the jobListing location as a source.
@@ -496,9 +496,9 @@ map.on("load", async () => {
 
         var markerIcon = "";
         if (item[1] === "Yes") {
-          markerIcon = "red-marker";
+          markerIcon = "redpin";
         } else {
-          markerIcon = "green-marker";
+          markerIcon = "greenpin";
         }
 
         var jsonObject = {
