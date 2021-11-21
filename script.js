@@ -223,7 +223,7 @@ map.on("load", async () => {
     map.addImage("red-marker-icon", image);
   });
 
-  map.loadImage("green-marker-icon.png", (error, image) => {
+  map.loadImage("green-marker-icon.svg", (error, image) => {
     if (error) throw error;
 
     // Add the image to the map style.
