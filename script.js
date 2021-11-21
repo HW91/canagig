@@ -456,10 +456,10 @@ map.on("load", async () => {
   renderListings([]);
 
   // Update the source from the API every 2 seconds.
-  const updateSource = setInterval(async () => {
-    const geojson = await getLocation(updateSource);
-    map.getSource("jobListing").setData(geojson);
-  }, 2000);
+  // const updateSource = setInterval(async () => {
+  //   const geojson = await getLocation(updateSource);
+  //   map.getSource("jobListing").setData(geojson);
+  // }, 2000);
 
   // async function getLocation(updateSource) {
   async function getLocation() {
