@@ -452,9 +452,9 @@ map.on("load", async () => {
         if (filtered.length) {
       map.setFilter("jobListing", [
         "match",
-        ["get", "city"],
+        ["get", "company"],
         filtered.map(function (feature) {
-          return feature.properties.city;
+          return feature.properties.company;
         }),
         true,
         false,
