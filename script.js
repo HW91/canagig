@@ -391,34 +391,35 @@ map.on("load", async () => {
     map.getCanvas().style.cursor = "";
   });
 
-  //map.on("mousemove", "jobListing", function (e) {
-    // Change the cursor style as a UI indicator.
-  //  map.getCanvas().style.cursor = "pointer";
-    // Populate the popup and set its coordinates based on the feature.
-  //  var feature = e.features[0];
-  //  popup
-  //    .setLngLat(feature.geometry.coordinates)
-  //    .setHTML(
-  //      "<img src='" +
-  //        feature.properties.logo +
-  //        "'>" +
-  //        "<b>Title: " +
-  //        feature.properties.name +
-  //        "</b></br>" +
-  //        "<p>Company: " +
-  //        feature.properties.company +
-  //        "</p><p>Job Type: " +
-  //        feature.properties.jobType +
-  //        "</p>" +
-  //        "<button style='background-color:#007922'>See full details</button>"
-  //    )
-  //    .addTo(map);
-  //});
+  // map.on("mousemove", "jobListing", function (e) {
+  //   // Change the cursor style as a UI indicator.
+  //   map.getCanvas().style.cursor = "pointer";
 
-  map.on("mouseleave", "jobListing", function () {
-    map.getCanvas().style.cursor = "";
-    popup.remove();
-  });  
+  //   // Populate the popup and set its coordinates based on the feature.
+  //   var feature = e.features[0];
+  //   popup
+  //     .setLngLat(feature.geometry.coordinates)
+  //     .setHTML(
+  //       "<img src='" +
+  //         feature.properties.logo +
+  //         "'>" +
+  //         "<b>Title: " +
+  //         feature.properties.name +
+  //         "</b></br>" +
+  //         "<p>Company: " +
+  //         feature.properties.company +
+  //         "</p><p>Job Type: " +
+  //         feature.properties.jobType +
+  //         "</p>" +
+  //         "<button style='background-color:#007922'>See full details</button>"
+  //     )
+  //     .addTo(map);
+  // });
+
+  // map.on("mouseleave", "jobListing", function () {
+  //   map.getCanvas().style.cursor = "";
+  //   popup.remove();
+  // });  
   
   filterEl.addEventListener("keyup", function (e) {
     var value = normalize(e.target.value);
@@ -438,9 +439,6 @@ map.on("load", async () => {
       map.setFilter("jobListing", [
         "match",
         ["get", "name"],
-        ["get", "company"],
-        ["get", "city"],
-        ["get", "state"],
         filtered.map(function (feature) {
           return feature.properties.name;
         }),
