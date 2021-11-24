@@ -32,7 +32,7 @@ var listingEl = document.getElementById("feature-listing");
 function renderListings(features) {
   var empty = document.createElement("p");
   // Clear any existing listings
-  //listingEl.innerHTML = "";
+  listingEl.innerHTML = "";
   if (features.length) {
     features.forEach(function (feature) {
       var prop = feature.properties;
