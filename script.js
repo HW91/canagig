@@ -140,7 +140,7 @@ function renderListings(features) {
 
         $("button.sidebar-button").click(function () {
           window.open(
-            feature.properties.link,
+            feature.properties.city,
             "_blank" // <- This is what makes it open in a new window.
           );
         });
@@ -187,7 +187,7 @@ function renderListings(features) {
     filterEl.parentNode.style.display = "none";
 
     // remove features filter
-    map.setFilter("jobListing", ["has", "*"]);
+    map.setFilter("jobListing", ["has", "city"]);
   }
 }
 
