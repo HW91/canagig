@@ -263,8 +263,11 @@ map.on("load", async () => {
   map.on("moveend", function () {
     var features = map.queryRenderedFeatures({ layers: ["jobListing"] });
 
-  //  if (features) {
-  //    var uniqueFeatures = getUniqueFeatures(features, "name");
+    if (features) {
+      var uniqueFeatures = getUniqueFeatures(features, "name");
+      var uniqueFeatures = getUniqueFeatures(features, "city");
+      var uniqueFeatures = getUniqueFeatures(features, "company");
+      var uniqueFeatures = getUniqueFeatures(features, "state");
       // Populate features for the listing overlay.
       renderListings(uniqueFeatures);
 
