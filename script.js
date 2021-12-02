@@ -175,8 +175,8 @@ function renderListings(features) {
   } else {
     // I add this part of code for not needing a map dragging to populate the results on the sidebar:
     map.fitBounds([
-      [-78.766357, 42.793953],
-      [-88.0686147, 37.9002342],
+      [-66.94838, 47.46965],
+      [-128.71732, 23.84461],
     ]);
     /////////////
 
