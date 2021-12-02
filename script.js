@@ -93,12 +93,13 @@ function renderListings(features) {
             feature.properties.jobType +
             "</p>" +
             "<button class='first-popup'>See more</button>"
+          
+            .addTo(map);
+            map.flyTo({
+              center: feature.geometry.coordinates,
+              zoom: 9,
+            });
           )
-          .addTo(map);
-        map.flyTo({
-          center: feature.geometry.coordinates,
-          zoom: 9,
-        });
       })
 
 
