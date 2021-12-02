@@ -265,9 +265,6 @@ map.on("load", async () => {
 
     if (features) {
       var uniqueFeatures = getUniqueFeatures(features, "name");
-      var uniqueFeatures = getUniqueFeatures(features, "city");
-      var uniqueFeatures = getUniqueFeatures(features, "company");
-      var uniqueFeatures = getUniqueFeatures(features, "state");
       // Populate features for the listing overlay.
       renderListings(uniqueFeatures);
 
