@@ -66,10 +66,7 @@ body {
   border: none;
 }
 
-#feature-listing p.name,
-#feature-listing p.company,
-#feature-listing p.city,
-#feature-listing p.state {
+#feature-listing p.name {
   margin-bottom: 4px;
   margin-top: 4px;
 }
@@ -299,10 +296,7 @@ div.sidebar-content-inner p.description {
   }
 
   #feature-listing p.link,
-    #feature-listing p.name,
-    #feature-listing p.company,
-    #feature-listing p.city,
-    #feature-listing p.state {
+  #feature-listing p.name {
     margin-bottom: 2px;
     margin-top: 2px;
   }
