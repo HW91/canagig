@@ -184,7 +184,7 @@ function renderListings(features) {
     // listingEl.appendChild(empty);
 
     // Hide the filter input
-    filterEl.parentNode.style.display = "none";
+    //filterEl.parentNode.style.display = "none";
 
     // remove features filter
     map.setFilter("jobListing", ["has", "link"]);
