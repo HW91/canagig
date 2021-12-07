@@ -456,7 +456,9 @@ map.on("load", async () => {
         ["get", "name"],
         filtered.map(function (feature) {
           return feature.properties.name;
-        }),
+        }),.sort ((nameA, nameB) => {
+          return getRelevancy(personB.name, value) - getRelevancy(personA.name, value);
+    }));
         true,
         false,
       ]);
