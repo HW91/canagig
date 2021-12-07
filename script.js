@@ -421,6 +421,18 @@ map.on("load", async () => {
   //   popup.remove();
   // });  
   
+  function getRelavancy(value, searchTerm) {
+    if (value === searchTerm) {
+        return 3;
+    }  else if (value.startsWith(searchTerm)) {
+        return 2;
+    }  else if (value.includes(searchTerm)) {
+        return 1;
+    }   else {
+        return 0;
+    }  
+  }
+  
   filterEl.addEventListener("keyup", function (e) {
     var value = normalize(e.target.value);
 
@@ -539,18 +551,6 @@ map.on("load", async () => {
   
   function hideLoader() {
     $('#loading').hide();
-}
-
-function getRelavancy(value, searchTerm) {
-  if (value === searchTerm) {
-      return 3;
-  }  else if (value.startsWith(searchTerm)) {
-      return 2;
-  }  else if (value.includes(searchTerm)) {
-      return 1;
-  }   else {
-      return 0;
-  }  
 }
 
 $(window).ready(hideLoader);
