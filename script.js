@@ -433,7 +433,7 @@ map.on("load", async () => {
       var state = normalize(feature.properties.state);
       return name.indexOf(value) > -1 || code.indexOf(value) > -1 || company.indexOf(value) > -1 || city.indexOf(value) > -1 || state.indexOf(value) > -1;
     });
-
+    
     // Populate the sidebar with filtered results
     renderListings(filtered);
 
@@ -539,6 +539,18 @@ map.on("load", async () => {
   
   function hideLoader() {
     $('#loading').hide();
+}
+
+function getRelavancy(value, searchTerm) {
+  if (value === searchTerm) {
+      return 3;
+  }  else if (value.startsWith(searchTerm)) {
+      return 2;
+  }  else if (value.includes(searchTerm)) {
+      return 1;
+  }   else {
+      return 0;
+  }  
 }
 
 $(window).ready(hideLoader);
