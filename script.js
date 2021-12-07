@@ -431,7 +431,7 @@ map.on("load", async () => {
       var company = normalize(feature.properties.company);
       var city = normalize(feature.properties.city);
       var state = normalize(feature.properties.state);
-      return name.indexOf(value) > -1 || code.indexOf(value) > -1;
+      return name.indexOf(value) > -1 || code.indexOf(value) > -1 || company.indexOf(value) > -1 || city.indexOf(value) > -1 || state.indexOf(value) > -1;
     });
 
     // Populate the sidebar with filtered results
