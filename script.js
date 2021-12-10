@@ -178,7 +178,6 @@ function renderListings(features) {
       [-66.94838, 47.46965],
       [-128.71732, 23.84461],
     ]);
-    /////////////
 
     // empty.textContent = 'Drag the map to populate results';
     // listingEl.appendChild(empty);
@@ -187,7 +186,7 @@ function renderListings(features) {
     filterEl.parentNode.style.display = "none";
 
     // remove features filter
-    map.setFilter("jobListing", ["has", "link"]);
+    map.setFilter("jobListing", ["has", "name"]);
   }
 }
 
