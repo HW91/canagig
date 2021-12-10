@@ -427,10 +427,8 @@ map.on("load", async () => {
     // Filter visible features that don't match the input value.
     var filtered = places.filter(function (feature) {
       var name = normalize(feature.properties.name);
-      var code = normalize(feature.properties.link);
       var company = normalize(feature.properties.company);
       var city = normalize(feature.properties.city);
-      var state = normalize(feature.properties.state);
       return name.indexOf(value) > -1 || company.indexOf(value) > -1 || city.indexOf(value) > -1;
     });
 
