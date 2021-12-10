@@ -186,7 +186,7 @@ function renderListings(features) {
     filterEl.parentNode.style.display = "none";
 
     // remove features filter
-    map.setFilter("jobListing", ["has", "name"]);
+    map.setFilter("jobListing", ["has", "link"]);
   }
 }
 
@@ -415,10 +415,10 @@ map.on("load", async () => {
   //     .addTo(map);
   // });
 
-  // map.on("mouseleave", "jobListing", function () {
-  //   map.getCanvas().style.cursor = "";
-  //   popup.remove();
-  // });  
+  map.on("mouseleave", "jobListing", function () {
+    map.getCanvas().style.cursor = "";
+    popup.remove();
+  });  
   
   filterEl.addEventListener("keyup", function (e) {
     var value = normalize(e.target.value);
