@@ -487,7 +487,6 @@ map.on("load", async () => {
       function addDataToArray(item) {
         var longitude = item[15];
         var latitude = item[16];
-
         var companyLogo = item[20];
         if (item[20]) {
           companyLogo = companyLogo.replace("open?id=", "uc?id=");
