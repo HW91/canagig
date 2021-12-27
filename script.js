@@ -89,17 +89,7 @@ function renderListings(features) {
             "</p><p class='first-popup'>Job Type: " +
             feature.properties.jobType +
             "</p>" +
-            "<p class='sidebar-paragraph'>Salary: " +
-            feature.properties.salary +
-            "</p>" +
-            "<p class='sidebar-paragraph'>Location: " +
-            feature.properties.location +
-            "</p>" +
-            "<p class='sidebar-paragraph'>Date Posted: " +
-            feature.properties.postingDate +
-            "</p>" +
             "<button class='first-popup'>See more</button>"
-            "<button class='sidebar-button'>Apply now</button></div>"
           )
           .addTo(map);
         map.flyTo({
