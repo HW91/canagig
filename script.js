@@ -270,69 +270,6 @@ map.on("load", async () => {
       )
       .addTo(map);
 
-    // start custom second popup - sidebar
-    $("button.first-popup").on("click", function () {
-      $("div.sidebar").addClass("visible");
-      $("div.sidebar").html(
-        '<div class="sidebar-content"><span class="close-button"> X</span><div class="sidebar-content-inner">' +
-        "<img class='sidebar-image' src='" +
-        feature.properties.logo +
-        "'></br>" +
-        "<b class='sidebar-bold'>Title: " +
-        feature.properties.name +
-        "</b>" +
-        "<p class='sidebar-paragraph'>Company: " +
-        feature.properties.company +
-        "</p><p class='sidebar-paragraph'>Job Type: " +
-        feature.properties.jobType +
-        "</p>" +
-        "<p class='sidebar-paragraph'>Salary: " +
-        feature.properties.salary +
-        "</p>" +
-        "<p class='sidebar-paragraph'>Location: " +
-        feature.properties.location +
-        "</p>" +
-        "<p class='sidebar-paragraph'>Date Posted: " +
-        feature.properties.postingDate +
-        "</p>" +
-        "<button class='sidebar-button'>Apply now</button></div>"
-      );
-
-      $("button.sidebar-button").click(function () {
-        console.log('apply button clicked');
-        mixpanel.track('Apply Button Clicked',{
-        'link':feature.properties.link,
-        'Name':feature.properties.name,
-        'Company':feature.properties.company,
-        'jobCity':feature.properties.city,
-         'jobState':feature.properties.state
-        });
-        window.open(
-          feature.properties.link,
-          "_blank" // <- This is what makes it open in a new window.
-        );
-      });
-
-      $(".close-button").on("click", function () {
-        $("div.sidebar").removeClass("visible");
-      });
-
-      // close popup on map click
-      map.on("click", function () {
-        $("div.custom-popup").removeClass("visible");
-      });
-
-      // close popup on map move
-      map.on("mouseup", function () {
-        $("div.custom-popup").removeClass("visible");
-      });
-
-      // close popup on map touch
-      map.on("touchmove", function () {
-        $("div.custom-popup").removeClass("visible");
-      });
-    });
-    // end custom second popup -
   });
   
   // Change the cursor to a pointer when the mouse is over the places layer.
