@@ -49,9 +49,18 @@ function renderListings(features) {
         "<p class='name'>Company: " +
         prop.company +
         "</p>" +
+        "<p class='name'>Job Type: " +
+        prop.jobType +
+        "</p>" +
+        "<p class='name'>Salary: " +
+        prop.salary +
+        "</p>" +
         "<p class='name'>Location: " +
         prop.location +
-        "</p>";
+        "</p>" +
+        "<p class='name'>Date Posted: " +
+        prop.datePosted +
+        "</p>" +;
       item.addEventListener("mouseover", function () {
       //   // Highlight corresponding feature on the map
         popup
